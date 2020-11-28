@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>crud/icons8-calendrier-96.png</file>
+        <file>crud/icons8-chercher-64.png</file>
+        <file>crud/icons8-effacer-26.png</file>
+        <file>crud/icons8-effacer-52.png</file>
+        <file>crud/icons8-modifier-48.png</file>
+        <file>crud/icons8-plus-48.png</file>
+        <file>crud/mod.png</file>
+        <file>crud/icons8-annuler-48.png</file>
+        <file>crud/icons8-vérifié-48.png</file>
+        <file>crud/photo-1520034475321-cbe63696469a.jpg</file>
+        <file>crud/583453e9474c5 - Copie.jpg</file>
+        <file>crud/images.png</file>
+        <file>crud/rech.png</file>
+        <file>crud/sup.png</file>
+        <file>crud/unnamed.png</file>
+        <file>crud/mod.jpg</file>
+    </qresource>
+    <qresource prefix="/new/prefix2"/>
+    <qresource prefix="/">
+        <file>crud/2.png</file>
+        <file>crud/analystic__chart__report__pie__graph__statics-512.png</file>
+    </qresource>
+</RCC>
