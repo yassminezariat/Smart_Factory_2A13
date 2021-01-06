@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QIntValidator *id_validator=new QIntValidator(1,999999);
+   QIntValidator *id_validator=new QIntValidator(1,999999);
     QIntValidator *tel_validator=new QIntValidator(10000000,99999999);
     ui->id_e->setValidator(id_validator);
     ui->id_grade->setValidator(id_validator);
@@ -16,6 +16,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->sal_gr->setValidator(id_validator);
     ui->lineEdit_tele->setValidator(tel_validator);
 
+    QBoxLayout *toolLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
+    toolLayout->addWidget(ui->toolBar);
+   //ui->tab->setLayout(toolLayout);
+    ui->Grades->setLayout(toolLayout);
 }
 
 MainWindow::~MainWindow()
@@ -26,16 +30,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionajouterEmploye_triggered()
 {
-    employe e(ui->id_e->text().toInt(),ui->nom_e->text(),ui->prenom_e->text(),ui->date_n_e->date(),ui->email_e->text(),ui->lineEdit_tele->text().toInt(),ui->comboBox_idgrade->currentText().toInt());
+    employe e(ui->id_e_2->text().toInt(),ui->nom_e_2->text(),ui->prenom_e_2->text(),ui->date_n_e_2->date(),ui->email_e_2->text(),ui->lineEdit_tele_2->text().toInt(),ui->comboBox_idgrade_2->currentText().toInt());
     bool test=e.ajouter();
     if(test){
         QMessageBox::information(nullptr,QObject::tr("Employe"),QObject::tr("employe ajouté\n" "click ok to exit"),QMessageBox::Ok);
-        ui->id_e->setText("");//bech ba3ed mankamel l ajout yarja3 a 0
-        ui->nom_e->setText("");
-        ui->prenom_e->setText("");
-        ui->email_e->setText("");
+        ui->id_e_2->setText("");//bech ba3ed mankamel l ajout yarja3 a 0
+        ui->nom_e_2->setText("");
+        ui->prenom_e_2->setText("");
+        ui->email_e_2->setText("");
 
-        ui->table_employe->setModel(tmpemploye.afficher());//actualisation
+        ui->table_employe_2->setModel(tmpemploye.afficher());//actualisation
     }
     else{
         QMessageBox::critical(nullptr,QObject::tr("Employe"),QObject::tr("Erreur!\n" "click ok to exit"),QMessageBox::Ok);
@@ -45,11 +49,11 @@ void MainWindow::on_actionajouterEmploye_triggered()
 
 void MainWindow::on_actionsupprimerEmp_triggered()
 {
-    bool test=tmpemploye.supprimer(ui->id_e->text().toInt());
+    bool test=tmpemploye.supprimer(ui->id_e_2->text().toInt());
     if(test){
         QMessageBox::information(nullptr,QObject::tr("Employe"),QObject::tr("employe supprimé\n" "click ok to exit"),QMessageBox::Ok);
-        ui->id_e->setText("");
-        ui->table_employe->setModel(tmpemploye.afficher());
+        ui->id_e_2->setText("");
+        ui->table_employe_2->setModel(tmpemploye.afficher());
     }
     else{
         QMessageBox::critical(nullptr,QObject::tr("Employe"),QObject::tr("Erreur!\n" "click ok to exit"),QMessageBox::Ok);
@@ -58,26 +62,26 @@ void MainWindow::on_actionsupprimerEmp_triggered()
 
 void MainWindow::on_actionrechercher_e_triggered()
 {
-    employe e=tmpemploye.recherche_Id(ui->id_e->text().toInt());
-    ui->nom_e->setText(e.Getnom());
-    ui->prenom_e->setText(e.Getprenom());
-    ui->email_e->setText(e.Getemail());
-    ui->date_n_e->setDate(e.Getdate_naissance());
+    employe e=tmpemploye.recherche_Id(ui->id_e_2->text().toInt());
+    ui->nom_e_2->setText(e.Getnom());
+    ui->prenom_e_2->setText(e.Getprenom());
+    ui->email_e_2->setText(e.Getemail());
+    ui->date_n_e_2->setDate(e.Getdate_naissance());
 
 }
 
 void MainWindow::on_actionmodifierEmploye_triggered()
 {
-    employe e(ui->id_e->text().toInt(),ui->nom_e->text(),ui->prenom_e->text(),ui->date_n_e->date(),ui->email_e->text(),ui->lineEdit_tele->text().toInt(),ui->comboBox_idgrade->currentText().toInt());
+    employe e(ui->id_e_2->text().toInt(),ui->nom_e_2->text(),ui->prenom_e_2->text(),ui->date_n_e_2->date(),ui->email_e_2->text(),ui->lineEdit_tele_2->text().toInt(),ui->comboBox_idgrade_2->currentText().toInt());
     bool test=e.modifier(ui->id_e->text().toInt());
     if(test){
         QMessageBox::information(nullptr,QObject::tr("Employe"),QObject::tr("employe modifié\n" "click ok to exit"),QMessageBox::Ok);
-        ui->id_e->setText("");
-        ui->nom_e->setText("");
-        ui->prenom_e->setText("");
-        ui->email_e->setText("");
+        ui->id_e_2->setText("");
+        ui->nom_e_2->setText("");
+        ui->prenom_e_2->setText("");
+        ui->email_e_2->setText("");
 
-        ui->table_employe->setModel(tmpemploye.afficher());
+        ui->table_employe_2->setModel(tmpemploye.afficher());
     }
     else{
         QMessageBox::critical(nullptr,QObject::tr("Employe"),QObject::tr("Erreur!\n" "click ok to exit"),QMessageBox::Ok);
@@ -100,8 +104,8 @@ void MainWindow::on_actionajoutergrade_triggered()
 
         ui->table_grade->setModel(tmpgrade.afficher());//actualisation
 
-        ui->comboBox_idgrade->clear();
-        ui->comboBox_idgrade->addItems(tmpgrade.listegrade());
+        ui->comboBox_idgrade_2->clear();
+        ui->comboBox_idgrade_2->addItems(tmpgrade.listegrade());
     }
     else{
         QMessageBox::critical(nullptr,QObject::tr("GRADE"),QObject::tr("Erreur!\n" "click ok to exit"),QMessageBox::Ok);
@@ -136,34 +140,34 @@ void MainWindow::on_actionrecherchergrade_triggered()
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
     ui->table_grade->setModel(tmpgrade.afficher());
-    ui->table_employe->setModel(tmpemploye.afficher());
+    ui->table_employe_2->setModel(tmpemploye.afficher());
 
-    ui->comboBox_idgrade->clear();
-    ui->comboBox_idgrade->addItems(tmpgrade.listegrade());
+    ui->comboBox_idgrade_2->clear();
+    ui->comboBox_idgrade_2->addItems(tmpgrade.listegrade());
 }
 
 void MainWindow::on_comboBox_idgrade_currentTextChanged(const QString &arg1)
 {
-    grade G=tmpgrade.recherche_Id(ui->comboBox_idgrade->currentText().toInt());
-    ui->label_grade->setText(G.Getstatut());
+    grade G=tmpgrade.recherche_Id(ui->comboBox_idgrade_2->currentText().toInt());
+    ui->label_grade_2->setText(G.Getstatut());
 }
 
 void MainWindow::on_id_e_textChanged(const QString &arg1)
 {
     employe e=tmpemploye.recherche_Id(ui->id_e->text().toInt());
     if(e.Getnom()!=""){
-        ui->label_test_id_emp->setText("employe existe!");
+        ui->label_test_id_emp_2->setText("employe existe!");
     }
     else{
-        ui->label_test_id_emp->setText("");
+        ui->label_test_id_emp_2->setText("");
     }
 }
 
 void MainWindow::on_lineEdit_rechercher_emp_textChanged(const QString &arg1)
 {
-    bool nom=ui->checkBox_nom->isChecked();
-    bool prenom=ui->checkBox_prenom->isChecked();
-    bool grade=ui->checkBox_grade->isChecked();
+    bool nom=ui->checkBox_nom_2->isChecked();
+    bool prenom=ui->checkBox_prenom_2->isChecked();
+    bool grade=ui->checkBox_grade_2->isChecked();
 
     if((nom && prenom && grade) ||(!nom && !prenom && !grade)){
         ui->table_employe->setModel(tmpemploye.recherche(ui->lineEdit_rechercher_emp->text()));
@@ -316,3 +320,44 @@ void MainWindow::on_checkBox_nombre_stateChanged(int arg1)
         ui->table_grade->setModel(tmpgrade.tri_N());
     }
 }
+
+void MainWindow::on_lineEdit_rechercher_emp_2_textChanged(const QString &arg1)
+{
+    bool nom=ui->checkBox_nom_2->isChecked();
+    bool prenom=ui->checkBox_prenom_2->isChecked();
+    bool grade=ui->checkBox_grade_2->isChecked();
+
+    if((nom && prenom && grade) ||(!nom && !prenom && !grade)){
+        ui->table_employe_2->setModel(tmpemploye.recherche(ui->lineEdit_rechercher_emp_2->text()));
+    }
+    else if(nom){
+        if(prenom){
+           ui->table_employe_2->setModel(tmpemploye.recherche_n_p(ui->lineEdit_rechercher_emp_2->text()));
+        }
+        else if(grade){
+            ui->table_employe_2->setModel(tmpemploye.recherche_n_g(ui->lineEdit_rechercher_emp_2->text()));
+        }
+        else{
+            ui->table_employe_2->setModel(tmpemploye.recherche_n(ui->lineEdit_rechercher_emp_2->text()));
+        }
+    }
+    else if(prenom){
+        if(grade){
+            ui->table_employe_2->setModel(tmpemploye.recherche_p_g(ui->lineEdit_rechercher_emp_2->text()));
+        }
+        else{
+            ui->table_employe_2->setModel(tmpemploye.recherche_p(ui->lineEdit_rechercher_emp_2->text()));
+        }
+    }
+    else{
+        ui->table_employe_2->setModel(tmpemploye.recherche_g(ui->lineEdit_rechercher_emp_2->text()));
+    }
+}
+
+void MainWindow::on_comboBox_idgrade_2_currentTextChanged(const QString &arg1)
+{
+    grade G=tmpgrade.recherche_Id(ui->comboBox_idgrade_2->currentText().toInt());
+    ui->label_grade_2->setText(G.Getstatut());
+}
+
+

@@ -8,6 +8,7 @@
 #include"grade.h"
 #include<QValidator>
 #include"statistiques.h"
+#include"arduino.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -58,6 +59,10 @@ private slots:
     void on_checkBox_grade2_stateChanged(int arg1);
 
     void on_checkBox_nombre_stateChanged(int arg1);
+
+    void on_lineEdit_rechercher_emp_2_textChanged(const QString &arg1);
+
+    void on_comboBox_idgrade_2_currentTextChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

@@ -17,9 +17,10 @@ class employe
   QString email;
   int telephone;
   int id_grade;
+  QString carte;
 public:
     employe();
-    employe(int,QString,QString,QDate,QString,int,int);
+    employe(int,QString,QString,QDate,QString,int,int,QString);
     ~employe();
 
     int Getid() { return id; }
@@ -36,6 +37,9 @@ public:
     void Settel(int telephone) { this->telephone=telephone; }
     int Getid_grade() { return id_grade; }
     void Setid_grade(int id_grade) { this->id_grade=id_grade; }
+    QString Getcarte() { return carte; }
+    void Setcarte(QString carte ) { this->carte=carte; }
+
 
 
 
@@ -52,6 +56,8 @@ public:
     QSqlQueryModel * recherche_n_p(const QString&);
     QSqlQueryModel * recherche_n_g(const QString&);
     QSqlQueryModel * recherche_p_g(const QString&);
+
+    QString getEmployeCarte(QString data);
 
 
 

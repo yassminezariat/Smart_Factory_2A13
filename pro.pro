@@ -1,4 +1,4 @@
-QT       += core gui sql charts
+QT       += core gui sql charts printsupport serialport multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,23 +16,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arduino.cpp \
+    client.cpp \
     connection.cpp \
     employe.cpp \
+    equipement.cpp \
+    facture.cpp \
     grade.cpp \
+    integration.cpp \
+    intervenant.cpp \
     main.cpp \
-    mainwindow.cpp \
     statistiques.cpp
 
 HEADERS += \
+    arduino.h \
+    client.h \
     connection.h \
     employe.h \
+    equipement.h \
+    facture.h \
     grade.h \
-    mainwindow.h \
+    integration.h \
+    intervenant.h \
     statistiques.h
 
 FORMS += \
-    mainwindow.ui \
-    statistiques.ui
+    integration.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -40,5 +49,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    im.qrc \
-    ress.qrc
+    im.qrc
